@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+:root {
+  --primary: #1a2b33;
+  --secondary: #f2f4f3;
+}
+
+* {
+  font-family: "Outfit", sans-serif;
+}
+
+body {
+  background-color: var(--primary);
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+}
+
+header {
+  grid-row: 1/ 3;
+}
