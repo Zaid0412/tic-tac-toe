@@ -29,10 +29,27 @@
           <div class="cell" data-row="2" data-column="2"></div>
         </div>
 
-        <dialog>
-          <form method="dialog">
-            <button>OK</button>
+        <dialog class="change-name-modal">
+          <form action="" method="dialog">
+            <div class="one">
+              <label for="player-one">Player One</label>
+              <input type="text" name="player-one" id="player-one" />
+            </div>
+
+            <div class="two">
+              <label for="player-two">Player Two</label>
+              <input type="text" name="player-two" id="player-two" />
+            </div>
+
+            <button type="submit" id="submit-name">Change</button>
           </form>
+        </dialog>
+
+        <dialog class="display-winner-modal">
+          <div class="result-cnt">
+            <h1 class="winner-text">Player One Wins!</h1>
+            <button class="play-again-btn">Play Again</button>
+          </div>
         </dialog>
       </div>
     </div>

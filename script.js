@@ -6,11 +6,11 @@ const GameBoard = (function () {
   ];
 
   let playerOne = {
-    playerName: "Umar",
+    playerName: "Player One",
     mark: "X",
   };
   let playerTwo = {
-    playerName: "Zaid",
+    playerName: "Player Two",
     mark: "O",
   };
 
@@ -18,9 +18,15 @@ const GameBoard = (function () {
 
   const markBtns = document.querySelectorAll(".cell");
   const resetBtn = document.querySelector("#reset-btn");
+  const changeNameBtn = document.querySelector("#change-name-btn");
+  const submitName = document.querySelector("#submit-name");
+  const playAgainBtn = document.querySelector(".play-again-btn");
   const turnHeader = document.querySelector("#turn");
   const changeNameModal = document.querySelector("dialog");
-  const changeNameBtn = document.querySelector("#change-name-btn");
+  const playerOneNameInput = document.querySelector("#player-one");
+  const playerTwoNameInput = document.querySelector("#player-two");
+  const displayWinnerModal = document.querySelector(".display-winner-modal");
+  const winnerText = document.querySelector(".winner-text");
 
   function startGame() {
     currentPlayer = playerOne;
@@ -85,6 +91,8 @@ const GameBoard = (function () {
 
   function checkWinner() {
     if (checkAllSame()) {
+      displayWinnerModal.showModal();
+      winnerText.textContent = `${currentPlayer.playerName} Wins!`;
       return `${currentPlayer.playerName} wins!`;
     }
   }
@@ -100,10 +108,12 @@ const GameBoard = (function () {
     col = Number(col);
 
     // Adding the mark to the "board" array
-    board[row][col] = currentPlayer.mark;
+    if (!(board[row][col].textContent = "X" && board[row][col] == "O")) {
+      board[row][col] = currentPlayer.mark;
 
-    console.clear();
-    console.table(board);
+      console.clear();
+      console.table(board);
+    }
   }
 
   function resetGame() {
@@ -114,6 +124,9 @@ const GameBoard = (function () {
     ];
     currentPlayer = playerOne;
     displayTurn();
+    turnHeader.textContent = `${playerOne.playerName}'s Turn`;
+    displayWinnerModal.close();
+
     Array.from(markBtns).forEach((btn) => {
       btn.textContent = "";
     });
@@ -123,12 +136,16 @@ const GameBoard = (function () {
     btn.addEventListener("click", (e) => {
       let row = btn.dataset.row;
       let column = btn.dataset.column;
-      addMark(row, column);
-      btn.textContent = currentPlayer.mark;
-      console.log(currentPlayer);
-      console.log(checkWinner());
-      displayTurn();
-      switchPlayer();
+      if (
+        !(board[row][column].textContent = "X" && board[row][column] == "O")
+      ) {
+        addMark(row, column);
+        btn.textContent = currentPlayer.mark;
+
+        console.log(checkWinner());
+        displayTurn();
+        switchPlayer();
+      }
     });
   });
 
@@ -142,8 +159,17 @@ const GameBoard = (function () {
   resetBtn.addEventListener("click", resetGame);
 
   changeNameBtn.addEventListener("click", function () {
-    changeNameModal.close();
+    changeNameModal.showModal();
   });
+
+  submitName.addEventListener("click", function () {
+    playerOne.playerName = playerOneNameInput.value;
+    playerTwo.playerName = playerTwoNameInput.value;
+    displayTurn();
+    turnHeader.textContent = `${playerOne.playerName}'s Turn`;
+  });
+
+  playAgainBtn.addEventListener("click", resetGame);
 
   return {
     addMark: addMark,
