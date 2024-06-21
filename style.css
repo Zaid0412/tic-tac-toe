@@ -26,8 +26,8 @@ body {
 }
 
 header {
-  display: flex;
-
+  display: grid;
+  align-content: center;
   align-items: center;
   grid-row: 1/2;
   /* height: 300px; */
@@ -36,6 +36,8 @@ header {
 
 .btns-cnt {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 100px;
 }
 
@@ -54,26 +56,28 @@ header {
 }
 
 #change-name-btn {
+  max-width: 250px;
+  max-height: 100px;
+  min-width: 250px;
+  min-height: 100px;
   cursor: pointer;
   margin-left: 50px;
-  font-size: 15px;
+  font-size: 20px;
   padding-bottom: 0px;
   padding-top: 0px;
 }
 
 #turn {
-  margin-left: 24vw;
+  max-width: 300px;
+  max-height: 110px;
   letter-spacing: 1px;
-}
-
-#change-name-btn:hover,
-img[alt="Reset icon"]:hover {
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin-right: 150px;
 }
 
 img[alt="Reset icon"] {
-  width: 50px;
-  margin-left: auto;
+  width: 70px;
+  height: 70px;
+
   margin-right: 100px;
 
   border-radius: 50%;
@@ -81,6 +85,17 @@ img[alt="Reset icon"] {
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   cursor: pointer;
+}
+
+#change-name-btn:hover,
+img[alt="Reset icon"]:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-container {

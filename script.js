@@ -32,12 +32,6 @@ const GameBoard = (function () {
     currentPlayer = playerOne;
   }
 
-  function getPlayerName() {
-    // Getting player names with prompt
-    playerOne.playerName = prompt("Player 1 Name");
-    playerTwo.playerName = prompt("Player 2 Name");
-  }
-
   function checkAllSame() {
     if (
       board[0][0] != "-" &&
@@ -108,7 +102,11 @@ const GameBoard = (function () {
     col = Number(col);
 
     // Adding the mark to the "board" array
-    if (!(board[row][col].textContent = "X" && board[row][col] == "O")) {
+    if (
+      !(
+        board[row][col].textContent == "X" && board[row][col].textContent == "O"
+      )
+    ) {
       board[row][col] = currentPlayer.mark;
 
       console.clear();
@@ -137,7 +135,10 @@ const GameBoard = (function () {
       let row = btn.dataset.row;
       let column = btn.dataset.column;
       if (
-        !(board[row][column].textContent = "X" && board[row][column] == "O")
+        !(
+          board[row][column].textContent == "X" &&
+          board[row][column].textContent == "O"
+        )
       ) {
         addMark(row, column);
         btn.textContent = currentPlayer.mark;
